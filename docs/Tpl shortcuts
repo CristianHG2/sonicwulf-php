@@ -1,0 +1,62 @@
+####### Tpl shortcuts ######
+
+Tpl shortcuts are commands that you can give to the SonicWulf MVC in order to simplify both your HTML and PHP lines.
+
+A Tpl shortcut command is generally called using the percentage (%) sign, placing the command between two percentage signs (%command%)
+
+Here's a list of the current available commands:
+
+Call site variable - %var%
+	- This function allows you to call variables that are currently present in the Tpl::$sitevars array. These variables are pulled from the database but can also be manually accessed and modified.
+
+Call framework function - %func::Module::Function(Parameter1, Parameter2)%
+	- This command allows you to call functions from any registered module with any number of parameters, we don't recommend the usage of this command if you're using strings with commas as the parameter however.
+
+Call defined constant - %const::CONSTANT%
+	- This command allows you to call and show any defined constant within the framework's scope
+
+####### Adding Tpl shortcuts #######
+
+Although we won't get much into this, there is a way to add your own Tpl shortcuts. If you're familiar with the framework structure and string positioning you should be able to easily customize your file parser.
+
+First off, here are the functions we'll work with
+
+	- preg_match
+	- strpos
+	- str_replace
+
+First off, you'll have to add an elseif statement at the end of the last Tpl command, then, you will look for the command by using strpos likeso:
+
+	if ( strpos($i[1], "command::") !== false )
+	{
+		Procedure
+	}
+
+Now, we'll get the main argument of the command with preg_match using regex
+
+	if ( strpos($i[1], "command::") !== false )
+	{
+		preg_match('/command::(.*)/', $i[1], $matches);
+	}
+
+After we get the matches, pretending the user entered the command "command::hello", we'll process it likeso with str_replace:
+
+	if ( strpos($i[1], "command::") !== false )
+	{
+		preg_match('/command::(.*)/', $i[1], $matches);
+
+		switch ( $matches[1] )
+		{
+			case 'hello':
+				$contents = str_replace("%".$i[1]."%", 'Hello :D', $contents);
+			break;
+			default:
+				$contents = str_replace("%".$i[1]."%", 'beep boop command not found', $contents);
+			break;
+		}
+	}
+
+And, that's pretty much, here's a quick list of variables we used that we didn't explain:
+
+	- $i[1] = This is the valuable in which the foreach stores the next found %% command
+	- $contents = This variable contains the contents of a parsed page, it is retrieved using file_get_contents

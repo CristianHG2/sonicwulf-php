@@ -1,0 +1,82 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700);
+
+body
+{
+	overflow-x: hidden;
+}
+
+.sonicwulf_msg
+{
+	background: #FFF;
+	border: 1px solid gray;
+	color: gray;
+	padding: 13px 25px 13px 25px;
+	border-radius: 10px;
+	font-size: 20px;
+	display: inline-block;
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.sonicwulf_msg b
+{
+	padding-right: 6px;
+}
+
+.sonicwulf_fatal
+{
+	background: #FFF;
+	border: 1px solid gray;
+	color: gray;
+	padding: 50px 40px 20px 40px;
+	border-radius: 10px;
+	font-size: 20px;
+	display: inline-block;
+	font-family: 'Open Sans Condensed', sans-serif;
+	width: 80%;
+	height: 71%;
+	position: absolute;
+	top: 8%;
+	left: 8%;
+	z-index: 999;
+	text-align: left !important;
+	overflow: auto;
+}
+
+.sonicwulf_overlay
+{
+	position: absolute;
+	background: #FFF;
+	width: 100%;
+	height: 100%;
+	z-index: 998;
+	top: 0;
+	left: 0;
+}
+
+.sonicwulf_fatal .info
+{
+	word-wrap: break-word;
+	word-break: break-all;
+	float: left;
+	width: 90%;
+	margin-left: 5%;
+}
+
+.sonicwulf_fatal .info h1
+{
+	font-size: 80px;
+	margin: 0;
+	margin-bottom: 20px;
+}
+
+.sonicwulf_fatal .info pre
+{
+	width: 100%;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+.sonicwulf_pagenum
+{
+	padding-right: 10px;
+}
